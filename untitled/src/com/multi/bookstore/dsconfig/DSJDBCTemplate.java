@@ -19,13 +19,11 @@ public class DSJDBCTemplate {
 				prop.load(new FileReader("resources/ds.driver.properties"));
 				Class.forName(prop.getProperty("driver"));
 
-				System.out.println("드라이버 등록성공");
 
 				
 				String url = prop.getProperty("url");
 
 				conn = DriverManager.getConnection(url , prop);
-				System.out.println("conn=" + conn);
 
 				conn.setAutoCommit(false);
 			} catch (ClassNotFoundException e) {

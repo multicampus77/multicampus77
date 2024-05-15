@@ -55,8 +55,6 @@ public class UserView {
         user.setAddress(address);
         user.setPhone(phone);
 
-        System.out.println(user.toString());
-
 
         userController.createUser(user);
 
