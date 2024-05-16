@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.multi.bookstore.dsconfig.DSJDBCTemplate.close;
@@ -178,5 +179,28 @@ public class UserDao {
         }
 
         return result;
+    }
+
+    public ArrayList<String> myReviewSelect(Connection conn, String loginUserId) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<String> list = new ArrayList<String>();
+
+        String sql = prop.getProperty("myReviewSelect");
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, loginUserId);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                list.add(rs.getString("br_title"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

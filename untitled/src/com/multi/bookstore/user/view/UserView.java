@@ -7,6 +7,7 @@ import com.multi.bookstore.user.model.dao.UserDao;
 import com.multi.bookstore.user.model.dto.User;
 import com.multi.bookstore.user.service.UserService;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserView {
@@ -97,7 +98,8 @@ public class UserView {
                 userDeleteView();
                 break;
             case 3 :
-                // 본인 작성글 조회 
+                // 본인 작성글 조회 화면
+                myWriteChView();
                 break;
             case 4 :
                 // 장바구니
@@ -170,5 +172,56 @@ public class UserView {
             System.out.println("입력 값이 잘못 되었습니다.");
             myPageView();
         }
+    }
+
+    public void myWriteChView() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("조회 할 항목을 선택해주세요.");
+        System.out.println("1. 판매 도서");
+        System.out.println("2. 독후감");
+        System.out.println("0. 돌아가기");
+        System.out.println("9. 프로그램 종료");
+
+        int ch = sc.nextInt();
+
+        switch (ch) {
+            case 1 :
+
+                break;
+            case 2 :
+                myReviewList();
+                break;
+            case 0 :
+                myPageView();
+                break;
+            case 9 :
+                return;
+        }
+
+    }
+
+    private void myReviewList() {
+        Scanner sc = new Scanner(System.in);
+
+
+        // 리스트
+
+        ArrayList<String> titleList = userController.myReviewList();
+        int i = 1;
+
+        for (String title: titleList) {
+            System.out.println(i++ + ". " + title);
+        }
+
+        System.out.println("0. 돌아가기");
+
+        int ch = sc.nextInt();
+        switch (ch) {
+            case 0 :
+                myWriteChView();
+                break;
+        }
+
     }
 }

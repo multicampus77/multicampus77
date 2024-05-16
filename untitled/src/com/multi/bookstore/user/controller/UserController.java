@@ -6,6 +6,8 @@ import com.multi.bookstore.user.model.dto.User;
 import com.multi.bookstore.user.service.UserService;
 import com.multi.bookstore.user.view.UserView;
 
+import java.util.ArrayList;
+
 public class UserController {
 
     private UserService userService = new UserService();
@@ -81,5 +83,18 @@ public class UserController {
             System.out.println("수정이 완료 되었습니다");
             new UserView().userUpdateView();
         }
+    }
+
+    public ArrayList<String> myReviewList() {
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        list = userService.myReviewList(Session.loginUserId);
+
+        if (list == null) {
+            System.out.println("데이터가 없습니다.");
+        }
+
+        return list;
     }
 }

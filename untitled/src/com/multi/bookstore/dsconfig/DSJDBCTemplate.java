@@ -19,8 +19,6 @@ public class DSJDBCTemplate {
 				prop.load(new FileReader("resources/ds.driver.properties"));
 				Class.forName(prop.getProperty("driver"));
 
-
-				
 				String url = prop.getProperty("url");
 
 				conn = DriverManager.getConnection(url , prop);

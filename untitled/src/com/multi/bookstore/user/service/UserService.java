@@ -4,6 +4,7 @@ import com.multi.bookstore.user.model.dao.UserDao;
 import com.multi.bookstore.user.model.dto.User;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import static com.multi.bookstore.dsconfig.DSJDBCTemplate.*;
 
@@ -72,5 +73,14 @@ public class UserService {
         else rollback(conn);
 
         return result;
+    }
+
+    public ArrayList<String> myReviewList(String loginUserId) {
+        ArrayList<String> list = new ArrayList<String>();
+        Connection conn = getConnection();
+
+        list = userDao.myReviewSelect(conn, loginUserId);
+
+        return list;
     }
 }
